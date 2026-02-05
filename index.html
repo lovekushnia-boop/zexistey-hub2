@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZEXISTEY HUB | Dashboard</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif;}
+    body{
+      background:radial-gradient(circle at top,#0f2027,#000);
+      color:#00ffcc;
+      min-height:100vh;
+    }
+    .container{padding:20px;max-width:1200px;margin:auto;}
+
+    .logo{
+      text-align:center;
+      font-size:32px;
+      font-weight:800;
+      animation:glow 2s infinite alternate;
+    }
+    @keyframes glow{
+      from{text-shadow:0 0 10px #00ffcc;}
+      to{text-shadow:0 0 25px #00ffcc,0 0 40px #00ffaa;}
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+      margin-top:30px;
+    }
+    .card{
+      background:rgba(0,0,0,0.6);
+      border:1px solid #00ffcc55;
+      border-radius:15px;
+      padding:20px;
+      box-shadow:0 0 20px #00ffcc22;
+      transition:0.3s;
+    }
+    .card:hover{transform:translateY(-5px);box-shadow:0 0 30px #00ffcc77;}
+    .card h3{margin-bottom:10px;color:#fff;}
+
+    .stat{font-size:28px;font-weight:700;}
+
+    .status span{display:inline-block;margin-right:10px;}
+    .online{color:#00ff00;}
+    .busy{color:#ffaa00;}
+
+    select,input,button{
+      width:100%;
+      padding:10px;
+      margin-top:8px;
+      background:#000;
+      color:#00ffcc;
+      border:1px solid #00ffcc55;
+      border-radius:8px;
+    }
+
+    button{
+      background:#00ffcc;
+      color:#000;
+      font-weight:700;
+      cursor:pointer;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+  <div class="logo">ZEXISTEY HUB</div>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>Live Stats</h3>
+      <div class="stat" id="kills">12000</div>
+      <p>Total Guild Bot</p>
+    </div>
+
+    <!-- MEMBERS STATUS -->
+    <div class="card">
+      <h3>Members Status</h3>
+      <div class="status">
+        <span class="online">● <span id="onlineCount">23</span> Online</span>
+        <span class="busy">● <span id="busyCount">11</span> Busy</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Select Country</h3>
+      <select id="country">
+        <option>India</option>
+        <option>Indonesia</option>
+        <option>Brazil</option>
+        <option>Thailand</option>
+        <option>Vietnam</option>
+        <option>Pakistan</option>
+        <option>Bangladesh</option>
+        <option>Malaysia</option>
+        <option>Mexico</option>
+        <option>Nepal</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <h3>Guild UID</h3>
+      <input id="guildUID" type="text" maxlength="15"
+        placeholder="Enter Guild UID"
+        oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+    </div>
+
+    <div class="card">
+      <h3>Select Device</h3>
+      <select id="device">
+        <option>Samsung</option>
+        <option>Xiaomi</option>
+        <option>Redmi</option>
+        <option>Realme</option>
+        <option>Vivo</option>
+        <option>Oppo</option>
+        <option>OnePlus</option>
+        <option>Poco</option>
+        <option>Infinix</option>
+        <option>Tecno</option>
+        <option>Motorola</option>
+        <option>Nokia</option>
+        <option>Apple (iPhone)</option>
+        <option>Asus</option>
+        <option>Asus ROG</option>
+        <option>Google Pixel</option>
+        <option>Huawei</option>
+        <option>Honor</option>
+        <option>iQOO</option>
+        <option>Nothing</option>
+        <option>Lava</option>
+        <option>Micromax</option>
+        <option>Karbonn</option>
+        <option>Itel</option>
+        <option>Gionee</option>
+        <option>Lenovo</option>
+        <option>Sony</option>
+        <option>LG</option>
+        <option>HTC</option>
+        <option>Meizu</option>
+        <option>ZTE</option>
+        <option>Panasonic</option>
+        <option>TCL</option>
+        <option>Black Shark</option>
+        <option>RedMagic</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <button onclick="goNext()">NEXT</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // Live Stats
+  let kills = 12000;
+  setInterval(()=>{
+    kills += Math.floor(Math.random()*20);
+    document.getElementById('kills').innerText = kills;
+  },1000);
+
+  // Members auto up-down
+  let online = 23;
+  let total = 34;
+
+  setInterval(()=>{
+    let change = Math.random() > 0.5 ? 1 : -1;
+    online += change;
+
+    if(online < 15) online = 15;
+    if(online > 30) online = 30;
+
+    let busy = total - online;
+
+    document.getElementById("onlineCount").innerText = online;
+    document.getElementById("busyCount").innerText = busy;
+  },2000);
+
+  // ✅ SAVE DATA + NEXT
+  function goNext(){
+    localStorage.setItem("selectedCountry",
+      document.getElementById("country").value);
+
+    localStorage.setItem("selectedDevice",
+      document.getElementById("device").value);
+
+    localStorage.setItem("guildUID",
+      document.getElementById("guildUID").value);
+
+    window.location.href = "page2.html";
+  }
+</script>
+
+</body>
+</html>

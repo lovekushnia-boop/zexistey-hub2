@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ZEXISTEY HUB | Access Granted</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif;}
+body{
+  background:#000;
+  color:#00ffcc;
+  min-height:100vh;
+}
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+.logo{
+  text-align:center;
+  font-size:28px;
+  font-weight:800;
+  margin-bottom:20px;
+  text-shadow:0 0 25px #00ffcc;
+}
+.card{
+  background:rgba(0,0,0,0.75);
+  border:1px solid #00ffcc55;
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:20px;
+  box-shadow:0 0 30px #00ffcc22;
+}
+.card h3{color:#fff;margin-bottom:10px;}
+.data p{margin:6px 0;}
+.access{
+  text-align:center;
+  font-size:22px;
+  color:#00ff00;
+  text-shadow:0 0 15px #00ff00;
+  margin:20px 0;
+}
+input[type=file]{
+  width:100%;
+  padding:10px;
+  background:#000;
+  border:1px dashed #00ffcc;
+  color:#00ffcc;
+  border-radius:10px;
+}
+button{
+  width:100%;
+  padding:14px;
+  background:#00ffcc;
+  color:#000;
+  font-weight:800;
+  border:none;
+  border-radius:14px;
+  cursor:pointer;
+  margin-top:15px;
+}
+button:hover{box-shadow:0 0 25px #00ffcc;}
+.success{
+  display:none;
+  text-align:center;
+  margin-top:20px;
+  color:#00ff00;
+}
+a{color:#00ffcc;text-decoration:none;}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<div class="logo">ZEXISTEY HUB — ACCESS PANEL</div>
+
+<div class="card data">
+  <h3>Selected Information</h3>
+  <p><b>Selected Bot:</b> <span id="bot"></span></p>
+</div>
+
+<div class="access">✅ ACCESS GRANTED</div>
+
+<div class="card">
+  <h3>Upload Bot Connecting File</h3>
+  <p>Required name: <b>zexistey_bot.bin</b></p>
+  <input type="file" id="botFile">
+</div>
+
+<div class="card">
+  <h3>Upload Activation Key File</h3>
+  <p>Required name: <b>zexistey_key.txt</b></p>
+  <input type="file" id="keyFile">
+</div>
+
+<button onclick="verify()">VERIFY</button>
+
+<div class="success" id="success">
+  🔥 BOT VERIFIED & CONNECTED SUCCESSFULLY 🔥
+  <br><br>
+  ▶ YouTube:  
+  <a href="https://youtube.com/@ZEXISTEY" target="_blank">ZEXISTEY</a>
+</div>
+
+</div>
+
+<script>
+document.getElementById("bot").innerText =
+  localStorage.getItem("selectedVote") || "N/A";
+
+function verify(){
+  const bot = document.getElementById("botFile").files[0];
+  const key = document.getElementById("keyFile").files[0];
+
+  if(!bot || !key){
+    alert("Both files required!");
+    return;
+  }
+
+  if(bot.name !== "zexistey_bot.bin"){
+    alert("Invalid Bot File Name!");
+    return;
+  }
+
+  if(key.name !== "zexistey_key.txt"){
+    alert("Invalid Key File Name!");
+    return;
+  }
+
+  document.getElementById("success").style.display="block";
+}
+</script>
+
+</body>
+</html>

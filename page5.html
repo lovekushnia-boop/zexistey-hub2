@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ZEXISTEY HUB | Access Granted</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif;}
+
+body{
+  background:#000;
+  color:#00ffcc;
+  min-height:100vh;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+
+.access{
+  text-align:center;
+  font-size:34px;
+  font-weight:800;
+  color:#00ff00;
+  margin-bottom:20px;
+  animation:glow 1.5s infinite alternate;
+}
+
+@keyframes glow{
+  from{text-shadow:0 0 15px #00ff00;}
+  to{text-shadow:0 0 35px #00ff00;}
+}
+
+.card{
+  background:rgba(0,0,0,0.7);
+  border:1px solid #00ffcc55;
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:20px;
+  box-shadow:0 0 25px #00ffcc22;
+}
+
+.card h3{
+  color:#fff;
+  margin-bottom:10px;
+}
+
+.data p{
+  margin:6px 0;
+  font-size:14px;
+}
+
+.youtube{
+  text-align:center;
+  margin-top:30px;
+}
+
+.youtube a{
+  display:inline-block;
+  padding:12px 20px;
+  border-radius:14px;
+  background:#ff0000;
+  color:#fff;
+  text-decoration:none;
+  font-weight:800;
+  box-shadow:0 0 25px #ff0000;
+}
+
+.youtube a:hover{
+  opacity:0.85;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<div class="access">✅ ACCESS GRANTED</div>
+
+<div class="card">
+  <h3>User Selection Summary</h3>
+  <div class="data">
+    <p><b>Selected Bot:</b> <span id="bot">---</span></p>
+    <p><b>Country:</b> <span id="country">---</span></p>
+    <p><b>Guild UID:</b> <span id="uid">---</span></p>
+    <p><b>Device Brand:</b> <span id="device">---</span></p>
+    <p><b>Status:</b> BOT CONNECTED SUCCESSFULLY</p>
+  </div>
+</div>
+
+<div class="youtube">
+  <p style="margin-bottom:10px;">Official YouTube Channel</p>
+  <a href="https://youtube.com/@ZEXISTEY" target="_blank">
+    🔴 ZEXISTEY
+  </a>
+</div>
+
+</div>
+
+<script>
+document.getElementById("bot").innerText =
+  localStorage.getItem("selectedVote") || "AUTO BOT";
+
+document.getElementById("country").innerText =
+  localStorage.getItem("selectedCountry") || "INDIA";
+
+document.getElementById("uid").innerText =
+  localStorage.getItem("guildUID") || "NOT SET";
+
+document.getElementById("device").innerText =
+  localStorage.getItem("selectedDevice") || "UNKNOWN";
+</script>
+
+</body>
+</html>

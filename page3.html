@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ZEXISTEY HUB | Connecting</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif;}
+
+body{
+  background:#000;
+  color:#00ff00;
+  min-height:100vh;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+
+.logo{
+  text-align:center;
+  font-size:26px;
+  font-weight:800;
+  color:#00ffcc;
+  margin-bottom:15px;
+  text-shadow:0 0 20px #00ffcc;
+}
+
+.terminal{
+  background:#010101;
+  border:2px solid #00ffcc55;
+  border-radius:12px;
+  padding:15px;
+  height:420px;
+  overflow-y:auto;
+  box-shadow:0 0 30px #00ffcc33;
+}
+
+.line{margin-bottom:6px;}
+
+.progress-box{margin-top:20px;}
+
+.progress{
+  width:100%;
+  height:18px;
+  border:1px solid #00ffcc;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.bar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#00ff00,#00ffaa);
+}
+
+.percent{
+  margin-top:8px;
+  text-align:center;
+  font-size:14px;
+  color:#00ffcc;
+}
+
+/* NEXT BUTTON */
+.next-btn{
+  margin-top:20px;
+  width:100%;
+  padding:12px;
+  background:#00ffcc;
+  color:#000;
+  font-weight:800;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  display:none;
+}
+.next-btn:hover{box-shadow:0 0 20px #00ffcc;}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<div class="logo">ZEXISTEY HUB — BOT CONNECTING</div>
+
+<div class="terminal" id="terminal"></div>
+
+<div class="progress-box">
+  <div class="progress">
+    <div class="bar" id="bar"></div>
+  </div>
+  <div class="percent" id="percent">0%</div>
+</div>
+
+<button class="next-btn" id="nextBtn" onclick="goNext()">NEXT</button>
+
+</div>
+
+<script>
+const terminal = document.getElementById("terminal");
+const bar = document.getElementById("bar");
+const percent = document.getElementById("percent");
+const nextBtn = document.getElementById("nextBtn");
+
+const logs = [
+  "[SYSTEM] Initializing ZEXISTEY HUB...",
+  "[OK] Secure tunnel created",
+  "[INFO] Fetching guild data...",
+  "[OK] Guild verified",
+  "[INFO] Syncing server...",
+  "[OK] Server connected",
+  "[INFO] Deploying bot packets...",
+  "[WARNING] Firewall detected...",
+  "[OK] Firewall bypassed",
+  "[INFO] Connecting bot...",
+  "[SUCCESS] BOT CONNECTED SUCCESSFULLY"
+];
+
+let i = 0;
+let progress = 0;
+
+const logInterval = setInterval(()=>{
+  if(i < logs.length){
+    terminal.innerHTML += `<div class="line">${logs[i]}</div>`;
+    terminal.scrollTop = terminal.scrollHeight;
+    i++;
+  }
+},700);
+
+const progressInterval = setInterval(()=>{
+  if(progress < 100){
+    progress += Math.floor(Math.random()*6) + 3;
+    if(progress > 100) progress = 100;
+    bar.style.width = progress + "%";
+    percent.innerText = progress + "%";
+  }else{
+    clearInterval(progressInterval);
+    clearInterval(logInterval);
+    nextBtn.style.display = "block"; // NEXT show
+  }
+},500);
+
+function goNext(){
+  window.location.href = "page4.html";
+}
+</script>
+
+</body>
+</html>

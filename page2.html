@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ZEXISTEY HUB</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif;}
+
+body{
+  background:radial-gradient(circle at top,#020024,#000);
+  color:#00ffcc;
+  min-height:100vh;
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:20px;
+}
+
+.logo{
+  text-align:center;
+  font-size:30px;
+  font-weight:800;
+  margin-bottom:20px;
+  text-shadow:0 0 20px #00ffcc;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:20px;
+}
+
+.vote-box{
+  background:rgba(0,0,0,0.7);
+  border:1px solid #00ffcc55;
+  border-radius:15px;
+  padding:25px 10px;
+  text-align:center;
+  cursor:pointer;
+  transition:0.3s;
+  position:relative;
+  overflow:hidden;
+}
+
+.vote-box::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,transparent,#00ffcc33,transparent);
+  animation:scan 3s linear infinite;
+}
+@keyframes scan{
+  from{transform:translateX(-100%);}
+  to{transform:translateX(100%);}
+}
+
+.vote-box:hover{
+  transform:scale(1.08);
+  box-shadow:0 0 25px #00ffcc;
+}
+
+.vote-box.active{
+  border:2px solid #00ff00;
+  box-shadow:0 0 30px #00ff00;
+}
+
+.vote-box h4{
+  font-size:16px;
+  color:#fff;
+  position:relative;
+  z-index:1;
+}
+
+.next-btn{
+  margin-top:30px;
+  width:100%;
+  padding:14px;
+  font-size:18px;
+  background:#00ffcc;
+  color:#000;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:700;
+}
+
+.next-btn:disabled{
+  background:#333;
+  color:#777;
+  cursor:not-allowed;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<div class="logo">ZEXISTEY HUB</div>
+
+<div class="grid" id="voteGrid">
+
+  <div class="vote-box"><h4>BOT ALPHA</h4></div>
+  <div class="vote-box"><h4>BOT BETA</h4></div>
+  <div class="vote-box"><h4>BOT GAMMA</h4></div>
+  <div class="vote-box"><h4>BOT DELTA</h4></div>
+  <div class="vote-box"><h4>BOT OMEGA</h4></div>
+
+  <div class="vote-box"><h4>VIP BOT</h4></div>
+  <div class="vote-box"><h4>RANK BOT</h4></div>
+  <div class="vote-box"><h4>SKILL BOT</h4></div>
+  <div class="vote-box"><h4>AIM BOT</h4></div>
+  <div class="vote-box"><h4>SPEED BOT</h4></div>
+
+  <div class="vote-box"><h4>PRO BOT</h4></div>
+  <div class="vote-box"><h4>ELITE BOT</h4></div>
+  <div class="vote-box"><h4>ULTRA BOT</h4></div>
+  <div class="vote-box"><h4>POWER BOT</h4></div>
+  <div class="vote-box"><h4>BOOST BOT</h4></div>
+
+  <div class="vote-box"><h4>LIVE BOT</h4></div>
+  <div class="vote-box"><h4>ACTIVE BOT</h4></div>
+  <div class="vote-box"><h4>GUILD BOT</h4></div>
+  <div class="vote-box"><h4>SERVER BOT</h4></div>
+  <div class="vote-box"><h4>MASTER BOT</h4></div>
+
+</div>
+
+<button class="next-btn" id="nextBtn" disabled onclick="goNext()">NEXT</button>
+
+</div>
+
+<script>
+let selected = null;
+const boxes = document.querySelectorAll('.vote-box');
+const nextBtn = document.getElementById('nextBtn');
+
+boxes.forEach(box=>{
+  box.onclick = ()=>{
+    boxes.forEach(b=>b.classList.remove('active'));
+    box.classList.add('active');
+    selected = box.innerText.trim();
+    nextBtn.disabled = false;
+  }
+});
+
+function goNext(){
+  localStorage.setItem("selectedBot", selected);
+  window.location.href = "page3.html";
+}
+</script>
+
+</body>
+</html>
